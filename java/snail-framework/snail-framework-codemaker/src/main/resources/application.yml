@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: codemaker
+  profiles:
+    active: dev
+
+server:
+  port: 19000
+  servlet:
+    context-path: /codemaker
+
+snail:
+  swagger:
+    enable: true
+    service-url: "http://localhost:19000/doc.html"
+    description: "代码自动生成器"
+    title: "代码自动生成器"
+    version: "1.0"
+
+
+
