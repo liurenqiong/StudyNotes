@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!--【demo_activity_award 活动奖品表】sql -->
+<mapper namespace="com.snail.framework.demo.dao.DemoActivityAwardDao">
+
+    <resultMap id="DemoActivityAwardMap" type="com.snail.framework.demo.pojo.DemoActivityAwardPojo">
+            <id property="id" column="id" />
+            <result property="activityId" column="activity_id" />
+            <result property="activityCode" column="activity_code" />
+            <result property="activityName" column="activity_name" />
+            <result property="awardId" column="award_id" />
+            <result property="awardCode" column="award_code" />
+            <result property="awardName" column="award_name" />
+            <result property="awardStock" column="award_stock" />
+            <result property="awardRate" column="award_rate" />
+            <result property="awardStartAmount" column="award_start_amount" />
+            <result property="awardStartTime" column="award_start_time" />
+            <result property="awardEndTime" column="award_end_time" />
+            <result property="remark" column="remark" />
+            <result property="delFlag" column="del_flag" />
+            <result property="awardVersion" column="award_version" />
+            <result property="createUser" column="create_user" />
+            <result property="createTime" column="create_time" />
+            <result property="updateUser" column="update_user" />
+            <result property="updateTime" column="update_time" />
+            <result property="awardIndex" column="award_index" />
+    </resultMap>
+
+    <!-- 基础查询条件 -->
+    <sql id="base_column">
+		id,activity_id,activity_code,activity_name,award_id,award_code,award_name,award_stock,
+				award_rate,award_start_amount,award_start_time,award_end_time,remark,del_flag,award_version,create_user,
+				create_time,update_user,update_time,award_index
+    </sql>
+
+    <sql id="base_column_params">
+		#{id},#{activityId},#{activityCode},#{activityName},#{awardId},#{awardCode},#{awardName},#{awardStock},
+				#{awardRate},#{awardStartAmount},#{awardStartTime},#{awardEndTime},#{remark},#{delFlag},#{awardVersion},#{createUser},
+				#{createTime},#{updateUser},#{updateTime},#{awardIndex}
+    </sql>
+
+    <!-- 基础查询条件 -->
+    <sql id="base_where">
+        <where>
+            <if test="id != null" >
+                AND id = #{id}
+            </if>
+            <if test="activityId != null" >
+                AND activity_id = #{activityId}
+            </if>
+            <if test="activityCode != null" >
+                AND activity_code = #{activityCode}
+            </if>
+            <if test="activityName != null" >
+                AND activity_name = #{activityName}
+            </if>
+            <if test="awardId != null" >
+                AND award_id = #{awardId}
+            </if>
+            <if test="awardCode != null" >
+                AND award_code = #{awardCode}
+            </if>
+            <if test="awardName != null" >
+                AND award_name = #{awardName}
+            </if>
+            <if test="awardStock != null" >
+                AND award_stock = #{awardStock}
+            </if>
+            <if test="awardRate != null" >
+                AND award_rate = #{awardRate}
+            </if>
+            <if test="awardStartAmount != null" >
+                AND award_start_amount = #{awardStartAmount}
+            </if>
+            <if test="awardStartTime != null" >
+                AND award_start_time = #{awardStartTime}
+            </if>
+            <if test="awardEndTime != null" >
+                AND award_end_time = #{awardEndTime}
+            </if>
+            <if test="remark != null" >
+                AND remark = #{remark}
+            </if>
+            <if test="delFlag != null" >
+                AND del_flag = #{delFlag}
+            </if>
+            <if test="awardVersion != null" >
+                AND award_version = #{awardVersion}
+            </if>
+            <if test="createUser != null" >
+                AND create_user = #{createUser}
+            </if>
+            <if test="createTime != null" >
+                AND create_time = #{createTime}
+            </if>
+            <if test="updateUser != null" >
+                AND update_user = #{updateUser}
+            </if>
+            <if test="updateTime != null" >
+                AND update_time = #{updateTime}
+            </if>
+            <if test="awardIndex != null" >
+                AND award_index = #{awardIndex}
+            </if>
+        </where>
+    </sql>
+
+
+	<!-- ==============================基础操作======================================= -->
+	<!--根据条件得到列表 -->
+	<select id="selectList" parameterType="com.snail.framework.demo.pojo.DemoActivityAwardPojo" resultMap="DemoActivityAwardMap">
+			SELECT <include refid="base_column"/>
+			FROM demo_activity_award
+        	<include refid="base_where"/>
+	</select>
+
+	<!--根据id得到记录 -->
+	<select id="selectUnique" parameterType="com.snail.framework.demo.pojo.DemoActivityAwardPojo" resultMap="DemoActivityAwardMap">
+			SELECT <include refid="base_column"/>
+			FROM demo_activity_award
+			<include refid="base_where"/>
+	</select>
+
+	<!-- 新增记录 -->
+	<insert id="insert" parameterType="com.snail.framework.demo.pojo.DemoActivityAwardPojo" 
+		useGeneratedKeys="true"	keyProperty="id" keyColumn="id">
+			INSERT INTO demo_activity_award (
+        		<include refid="base_column"/>
+			) VALUES (
+				<include refid="base_column_params"/>
+			)
+	</insert>
+	
+	<!-- 批量新增记录 -->
+	<insert id="insertList" parameterType="com.snail.framework.demo.pojo.DemoActivityAwardPojo">
+			INSERT INTO demo_activity_award (
+        		<include refid="base_column"/>
+			) VALUES (
+       			 <include refid="base_column_params"/>
+			)
+	</insert>
+	
+	<!-- 修改记录 -->
+	<update id="update" parameterType="com.snail.framework.demo.pojo.DemoActivityAwardPojo">
+		<![CDATA[ UPDATE demo_activity_award]]>
+		<set>
+	 		<if test="id != null"><![CDATA[ id = #{id},]]></if>
+	 		<if test="activityId != null"><![CDATA[ activity_id = #{activityId},]]></if>
+	 		<if test="activityCode != null and activityCode != ''"><![CDATA[ activity_code = #{activityCode},]]></if>
+	 		<if test="activityName != null and activityName != ''"><![CDATA[ activity_name = #{activityName},]]></if>
+	 		<if test="awardId != null"><![CDATA[ award_id = #{awardId},]]></if>
+	 		<if test="awardCode != null and awardCode != ''"><![CDATA[ award_code = #{awardCode},]]></if>
+	 		<if test="awardName != null and awardName != ''"><![CDATA[ award_name = #{awardName},]]></if>
+	 		<if test="awardStock != null"><![CDATA[ award_stock = #{awardStock},]]></if>
+	 		<if test="awardRate != null"><![CDATA[ award_rate = #{awardRate},]]></if>
+	 		<if test="awardStartAmount != null"><![CDATA[ award_start_amount = #{awardStartAmount},]]></if>
+	 		<if test="awardStartTime != null"><![CDATA[ award_start_time = #{awardStartTime},]]></if>
+	 		<if test="awardEndTime != null"><![CDATA[ award_end_time = #{awardEndTime},]]></if>
+	 		<if test="remark != null and remark != ''"><![CDATA[ remark = #{remark},]]></if>
+	 		<if test="delFlag != null"><![CDATA[ del_flag = #{delFlag},]]></if>
+	 		<if test="awardVersion != null and awardVersion != ''"><![CDATA[ award_version = #{awardVersion},]]></if>
+	 		<if test="createUser != null and createUser != ''"><![CDATA[ create_user = #{createUser},]]></if>
+	 		<if test="createTime != null"><![CDATA[ create_time = #{createTime},]]></if>
+	 		<if test="updateUser != null and updateUser != ''"><![CDATA[ update_user = #{updateUser},]]></if>
+	 		<if test="updateTime != null"><![CDATA[ update_time = #{updateTime},]]></if>
+	 		<if test="awardIndex != null"><![CDATA[ award_index = #{awardIndex},]]></if>
+		</set>
+		 <![CDATA[ WHERE id = #{id} ]]>
+	</update>
+	
+	<!-- 删除记录 -->
+	<update id="delete" parameterType="com.snail.framework.demo.pojo.DemoActivityAwardPojo">
+		<![CDATA[ DELETE FROM demo_activity_award where id = #{id} ]]>
+	</update>
+</mapper> 

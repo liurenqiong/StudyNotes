@@ -1,0 +1,22 @@
+server:
+  port: 34000
+  servlet:
+    context-path: /snail-demo
+
+spring:
+  application:
+    name: snail-demo
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+
+logback:
+  appname: snail-demo
+  logdir: /usr/app/deploy/snail-demo/logs
+ 
+
+
+
+
+
