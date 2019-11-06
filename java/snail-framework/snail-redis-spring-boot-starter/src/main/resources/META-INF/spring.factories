@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.snail.framework.redis.autoconfiguration.SnailRedisAutoConfiguration,\
+  com.snail.framework.redis.redisson.RedissonAutoConfiguration
