@@ -37,9 +37,9 @@ snail:
         redisShardCfg:
             connectionTimeout: 60000
             soTimeout: 60000
-           # password: "123456!"
+            password: "123456"
         hostsCfg:
-            - redis://127.0.0.1:6379
+            - redis://116.62.20.123:6379
         dbIndex: 1     
   swagger:
     enable: true #生产环境需要关闭接口文档 设置成false
