@@ -3,8 +3,11 @@ package com.snail.framework.demo.service;
 
 import com.snail.framework.demo.pojo.DemoActivityAwardPojo;
 import com.snail.framework.demo.request.GetActivityAwardRequest;
+import com.snail.framework.demo.request.LotteryRequest;
 import com.snail.framework.demo.response.GetActivityAwardResponse;
 import com.snail.framework.jdbc.base.service.iservice.IBaseService;
+import com.snail.framework.lock.annotation.LockType;
+import com.snail.framework.lock.annotation.SnailLock;
 
 /**
  * @功能:【demo_activity_award 活动奖品表】IService
@@ -21,5 +24,11 @@ public interface DemoActivityAwardService extends IBaseService<DemoActivityAward
 	 * @return
 	 */
 	GetActivityAwardResponse getActivityAward(GetActivityAwardRequest request);
+	
+	/**
+	 * 抽奖
+	 * @param request
+	 */
+	void lottery(LotteryRequest request);
 
 }

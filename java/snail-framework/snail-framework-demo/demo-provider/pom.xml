@@ -48,10 +48,16 @@
             <artifactId>snail-swagger-spring-boot-starter</artifactId>
             <version>${framework.version}</version>
         </dependency>
-
+        
        <dependency>
             <groupId>com.snail.framework</groupId>
             <artifactId>snail-redis-spring-boot-starter</artifactId>
+            <version>${framework.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.snail.framework</groupId>
+            <artifactId>snail-lock-spring-boot-starter</artifactId>
             <version>${framework.version}</version>
         </dependency>
 

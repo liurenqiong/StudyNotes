@@ -1,27 +1,28 @@
-package com.snail.framework.demo.constant;
+package com.snail.framework.lock;
 
 /**
  * @author snail
  * @create 2019/9/3.
  **/
-public enum  DemoErrorMsg {
+public enum  EDistributedLockMsg {
 
-    BAD_REQUEST_COLUMN("100000" , "请求参数{0},{1}"),
-    UPLOAD_ERROR("200008","上传文件异常"),
-    NOT_REPEAT_COMMIT("200013","请勿重复提交"),
-   
+    TRY_LOCK_TIME_OUT("LOCK_10001" , "服务器繁忙，请稍后再试"),
+
+    TRY_LOCK_FAIL("LOCK_10002" , "服务器繁忙，请稍后再试!"),
+
     ;
 
     private String code;
+
     private String msg;
 
-    private DemoErrorMsg(String code, String msg) {
+    EDistributedLockMsg(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
     public String getCode() {
-        return this.code;
+        return code;
     }
 
     public void setCode(String code) {
@@ -29,7 +30,7 @@ public enum  DemoErrorMsg {
     }
 
     public String getMsg() {
-        return this.msg;
+        return msg;
     }
 
     public void setMsg(String msg) {

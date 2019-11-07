@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.snail.framework.demo.interceptor.AuthInterceptor;
 import com.snail.framework.jdbc.autoconfiguration.EnableSnailJDBC;
+import com.snail.framework.lock.annotation.EnableSnailLock;
 import com.snail.framework.log.autoconfiguration.EnableSnailLogAdvice;
 import com.snail.framework.swagger.autoconfiguration.EnableSnailSwagger;
 
@@ -25,6 +26,7 @@ import com.snail.framework.swagger.autoconfiguration.EnableSnailSwagger;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableSnailLogAdvice
+@EnableSnailLock
 public class DemoApplication extends WebMvcConfigurerAdapter {
 
     @Autowired

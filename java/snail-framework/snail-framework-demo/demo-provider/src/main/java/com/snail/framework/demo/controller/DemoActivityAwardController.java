@@ -11,6 +11,7 @@ import com.snail.framework.common.model.AppResponse;
 import com.snail.framework.common.util.AppResponseUtil;
 import com.snail.framework.demo.api.DemoClient;
 import com.snail.framework.demo.request.GetActivityAwardRequest;
+import com.snail.framework.demo.request.LotteryRequest;
 import com.snail.framework.demo.response.GetActivityAwardResponse;
 import com.snail.framework.demo.service.DemoActivityAwardService;
 import com.snail.framework.log.annotation.LoggerManage;
@@ -46,6 +47,16 @@ public class DemoActivityAwardController implements DemoClient{
 		GetActivityAwardResponse response = demoActivityAwardService.getActivityAward(request);
 		return AppResponseUtil.responseSuccess(response);
 
+	}
+
+	@Override
+	@LoggerManage(description = "抽奖")
+	@PostMapping(value = "/lottery")
+	@ApiOperation(value = "lottery", notes = "抽奖")
+	public AppResponse lottery(
+			@ApiParam(name = "request", value = "lottery 接口", required = true) @Validated @RequestBody LotteryRequest request) {
+		demoActivityAwardService.lottery(request);
+		return AppResponseUtil.responseSuccess(null);
 	}
 
 }
