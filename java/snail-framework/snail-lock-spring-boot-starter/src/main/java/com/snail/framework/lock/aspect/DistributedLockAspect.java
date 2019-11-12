@@ -50,7 +50,7 @@ public class DistributedLockAspect {
 
 
     /**
-     * 切入点 所有 com.bgyjk.framework.lock.annotation.SnailLock 的方法
+     * 切入点 所有 com.snail.framework.lock.annotation.SnailLock 的方法
      */
     @Pointcut("@annotation(com.snail.framework.lock.annotation.SnailLock)")
     public void distributionLockPointCut() {

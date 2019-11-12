@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bgyjk.framework.codemaker.dao.CodeMakerDao">
+<mapper namespace="com.snail.framework.codemaker.dao.CodeMakerDao">
 	<!--根据审核状态取得数据列表 -->
 	<select id="selectList" parameterType="com.snail.framework.codemaker.pojo.ColumnInfo"
 			resultType="com.snail.framework.codemaker.pojo.ColumnInfo">
