@@ -12,71 +12,77 @@ deploy -e
 学习笔记
 
 
-linux 安装 Maven  
+https://www.cnblogs.com/fan-gx/p/11371984.html
 
-   第一步 下载
-   wget http://mirrors.cnnic.cn/apache/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.tar.gz
-   解压  tar -xvf apache-maven-3.6.2-bin.tar.gz
-   增加环境变量
 
-   vi /etc/profile
-   export MAVEN_HOME=/usr/java/apache-maven-3.6.2
-   export PATH=$PATH:$MAVEN_HOME/bin
- 
-source /etc/profile
+1、要使用nexus服务需要安装jdk和maven
+1.1、jdk下载地址：https://www.oracle.com/technetwork/java/javase/downloads/index.html
 
-rpm 文件解压
+rpm -ivh jdk-8u221-linux-x64.rpm
 
-rpm2cpio jdk-8u60-linux-x64.rpm | cpio -div
-
-linux 安装 jdk
-第一步 下载
-解压  tar -xvf jdk-8u231-linux-x64.tar.gz
-
-vi /etc/profile
-
-export JAVA_HOME=/usr/java/jdk1.8.0_231
-export CLASSPATH=$JAVA_HOME/jre/lib:$JAVA_HOME/lib
-export PATH=$PATH:$JAVA_HOME/bin
+vim /etc/profile
+export JAVA_HOME=/usr/java/jdk1.8.0_221-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar 
 
 source /etc/profile
 
-   查看环境变量
-   echo $PATH 
+java -version
+1.2、maven下载地址：https://maven.apache.org/download.cgi
+
+tar -zxvf apache-maven-3.6.1-bin.tar.gz
+
+vim /etc/profile
+export PATH=$PATH:/usr/local/maven/bin
+
+source /etc/profile
+
+mvn -v
+2、安装nexus
+下载地址：https://www.sonatype.com/nexus-repository-oss，点击首页大广告图，跳转后填写邮箱，点击，download，网页跳转后，选择 nexus repository manager oss 3.x - unix，下载最新安装包。
+
+或者打开网址：https://my.sonatype.com/ 在 Latest Releases 标签下， 下载最新nexus repository安装包
+
+wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+
+tar -zxvf nexus-3.18.1-01-unix.tar.gz
+#解压后又2个目录
+    #nexus-3.18.1-01：包含了 Nexus 运行所需要的文件。是 Nexus 运行必须的
+    #sonatype-work：包含了 Nexus 生成的配置文件、日志文件、仓库文件等。当我们需要备份 Nexus 的时候默认备份此目录即可
+
+#修改环境变量
+vim /etc/profile
+export NEXUS_HOME=/usr/local/nexus/nexus-3.18.1
+export PATH=$PATH:$NEXUS_HOME/bin
+
+source /etc/profile
+
+#修改启动用户
+vim /usr/local/nexus/nexus-3.18.1/bin/nexus.rc
+#run_as_user=""         #内容就这一行，放开注释，填写用户即可
+
+#修改端口
+vim /usr/local/nexus/nexus-3.18.1/etc/nexus-default.properties  #默认是8081
+
+#最后启动nexus
+cd /usr/local/nexus/nexus-3.18.1/bin
+./nexus start
+./nexus status
+
+#访问http://ip:8081，登陆用户admin 密码存放在：/usr/local/nexus/sonatype-work/nexus3/admin.password 目录
+
+#开机自启动
+vim /etc/rc.d/rc.local
+
+/usr/local/nexus/nexus-3.18.1/bin/nexus start   #添加这一行内容
+
+chmod 755 /etc/rc.d/rc.local
  
- linux 安装 nexus
-  下载 
-   http://119.29.241.56:8080/view/1320
-  解压  tar -xvf nexus-3.13.0-01-unix.tar.gz
-  移动改名
-  mv -v nexus-3.13.0-01 /usr/java/nexus
-  groupadd nexus
-  useradd -r -g nexus nexus
-   将安装目录所有者及所属组改为mysql ，这个根据自己的目录来
-  chown -R nexus.nexus /usr/java/nexus
 
-  切换用户
-  su nexus
 
-  修改自定义配置：
-  a、修改配置文件，nexus目录下，cd etc，可以修改端口号和ip地址
-  如，修改端口号：vim etc/nexus-default.properties  =>  application-port=8081
-b、如果Linux硬件配置比较低的话，建议修改为合适的大小，否则会出现运行崩溃的现象
-　 vim nexus/bin/nexus.vmoptions //虚拟机选项配置文件，可以修改数据、日志存储位置
 
-更改nexus 配置文件
-run_as_user='nexus'
 
-nexus 常用命令
-启动 nexus start //停止 nexus stop //重启 nexus restart //查看状态 nexus status下面我们启动Nexus：
 
-查看nexus服务是否启动成功
-　　使用命令：ps -ef|grep nexus     lsof -i:8081    netstat -tunlp
- 
-关闭防火墙命令  CentOS 7.0            #查看centos 版本 cat /etc/redhat-release
-systemctl stop firewalld.service #停止firewall
-systemctl disable firewalld.service #禁止firewall开机启动
-firewall-cmd --state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）
 
 
 

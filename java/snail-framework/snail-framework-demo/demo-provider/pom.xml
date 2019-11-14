@@ -66,6 +66,12 @@
             <artifactId>snail-log-spring-boot-starter</artifactId>
             <version>${framework.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.snail.framework</groupId>
+            <artifactId>snail-amqp-spring-boot-starter</artifactId>
+            <version>${framework.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.aliyun.oss</groupId>

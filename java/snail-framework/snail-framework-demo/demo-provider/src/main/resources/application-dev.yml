@@ -40,7 +40,19 @@ snail:
             password: "123456"
         hostsCfg:
             - redis://116.62.20.123:6379
-        dbIndex: 1     
+        dbIndex: 1   
+  rabbit:
+    host: 116.62.20.123
+    virtual-host: testone
+    username: testone
+    password: testone
+    port: 5672  
+#  rabbit:
+#    host: localhost
+#    virtual-host: testone
+#    username: guest
+#    password: guest
+#    port: 5672
   swagger:
     enable: true #生产环境需要关闭接口文档 设置成false
     service-url: "http://localhost:34000/snail-demo/" # 服务接口路径

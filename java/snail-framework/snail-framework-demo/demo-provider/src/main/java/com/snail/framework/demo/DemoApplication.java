@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.snail.framework.amqp.autoconfig.EnableSnailRabbit;
 import com.snail.framework.demo.interceptor.AuthInterceptor;
 import com.snail.framework.jdbc.autoconfiguration.EnableSnailJDBC;
 import com.snail.framework.lock.annotation.EnableSnailLock;
@@ -20,6 +21,7 @@ import com.snail.framework.swagger.autoconfiguration.EnableSnailSwagger;
  * @create 2019/9/2.
  **/
 //@EnableFeignClients({"",""})
+@EnableSnailRabbit
 @EnableDiscoveryClient
 @EnableSnailJDBC
 @EnableSnailSwagger
