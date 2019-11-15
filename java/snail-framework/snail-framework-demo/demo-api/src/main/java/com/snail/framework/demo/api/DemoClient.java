@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.snail.framework.common.model.AppResponse;
 import com.snail.framework.demo.request.GetActivityAwardRequest;
 import com.snail.framework.demo.request.LotteryRequest;
+import com.snail.framework.demo.request.TestMQRequest;
 import com.snail.framework.demo.response.GetActivityAwardResponse;
 import com.snail.framework.interceptor.FeginInterceptor;
 
@@ -29,6 +30,14 @@ public interface DemoClient {
      */
     @PostMapping(value = "/lottery")
     AppResponse lottery(@RequestBody LotteryRequest request);
+    
+    /**
+     * 测试Mq
+     * @param request
+     * @return
+     */
+    @PostMapping(value = "/lottery")
+    AppResponse testMq(@RequestBody TestMQRequest request);
 
 
 }
