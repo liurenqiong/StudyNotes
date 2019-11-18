@@ -1,0 +1,26 @@
+logback:
+  appname: snail-eureka
+  logdir: /usr/app/deploy/snail-eureka/logs
+
+server:
+  port: 18080
+
+eureka:
+  server:
+    enableSelfPreservation: false
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:${server.port}/eureka
+
+
+spring:
+  security:
+    enabled: true
+    user:
+      name: admin
+      password: 123456
