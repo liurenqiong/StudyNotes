@@ -15,12 +15,13 @@ eureka:
     fetch-registry: false
     register-with-eureka: false
     serviceUrl:
-      defaultZone: http://127.0.0.1:${server.port}/eureka
-
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
 
 spring:
   security:
-    enabled: true
     user:
       name: admin
       password: 123456
+      
+      
+# https://www.jb51.net/article/156272.htm  配置讲解地址      

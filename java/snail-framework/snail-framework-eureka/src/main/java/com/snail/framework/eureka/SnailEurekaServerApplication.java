@@ -17,5 +17,5 @@ public class SnailEurekaServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SnailEurekaServerApplication.class, args);
 	}
-	
+
 }
