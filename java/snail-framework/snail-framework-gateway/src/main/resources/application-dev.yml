@@ -1,0 +1,21 @@
+eureka:
+  instance:
+    prefer-ip-address: true #是否显示ip
+    ip-address: 本机ip #填写本机ip地址
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:18080/eureka/
+
+      
+spring:
+  application:
+    name: snail-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: snail-demo
+        uri: http://localhost:34000
+        predicates:
+        - Path=/snail-gateway/snail-demo/**
+        filters:
+        - StripPrefix=1

@@ -1,0 +1,25 @@
+logback:
+  appname: snail-gateway
+  logdir: /usr/app/deploy/snail-gateway/logs
+
+server:
+  port: 18081
+  servlet:
+    context-path: /snail-gateway
+    
+    
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+
+
+
+
+
+
+
+
+
+
