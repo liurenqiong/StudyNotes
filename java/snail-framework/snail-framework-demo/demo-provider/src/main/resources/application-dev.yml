@@ -78,13 +78,12 @@ snail:
        required: false       
 
 eureka:
+  instance:
+    prefer-ip-address: true #是否显示ip
+    ip-address: 本机ip #填写本机ip地址
   client:
-    serviceUrl:
-      defaultZone: "http://192.168.17.11:18080/eureka"
-#  instance:
-#    prefer-ip-address: true
-#    instance-id: ${spring.application.name}:${server.port}
-#    ip-address: 127.0.0.1
+    service-url:
+      defaultZone: http://admin:123456@localhost:18080/eureka/
 
 feign:
   httpclient:
