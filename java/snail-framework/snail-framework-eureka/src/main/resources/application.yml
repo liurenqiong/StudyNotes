@@ -4,12 +4,12 @@ logback:
 
 
 #单机  
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://本机ip地址:18080/eureka/ #注册中心地址
-#    register-with-eureka: false #表明该实例是否应该与尤里卡服务器登记其信息被别人发现。在某些情况下,您不希望您的实例被发现而你想发现其他实例。默认为true
-#    fetch-registry: false #表明这个客户是否应该从尤里卡服务器获取尤里卡注册表信息。默认为true  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18080/eureka/ #注册中心地址
+    register-with-eureka: false #表明该实例是否应该与尤里卡服务器登记其信息被别人发现。在某些情况下,您不希望您的实例被发现而你想发现其他实例。默认为true
+    fetch-registry: false #表明这个客户是否应该从尤里卡服务器获取尤里卡注册表信息。默认为true  
 
 
 #集群
@@ -24,55 +24,55 @@ spring:
       password: 123456 
    #用户名与密码若是不配置，系统会自动生成并打印在控制台日志上
    
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: true
-  server:
-    enable-self-preservation: true
-    peer-node-read-timeout-ms: 5000
-    
-    
-management:
-  endpoints:
-    web:
-      base-path: /
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-    restart:
-      enabled: true
-  server:
-    port: 18080
----
-spring:
-  profiles: eureka-jy
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@eureka-B:18080/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@eureka-C:18080/eureka/
-  instance:
-    hostname: eureka-A
----
-spring:
-  profiles: eureka-lhn
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@eureka-A:18080/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@eureka-C:18080/eureka/  
-  instance:
-    hostname: eureka-B
----
-spring:
-  profiles: eureka-zsm
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@eureka-A:18080/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@eureka-B:18080/eureka/
-  instance:
-    hostname: eureka-C
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: true
+#  server:
+#    enable-self-preservation: true
+#    peer-node-read-timeout-ms: 5000
+#    
+#    
+#management:
+#  endpoints:
+#    web:
+#      base-path: /
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+#    restart:
+#      enabled: true
+#  server:
+#    port: 18080
+#---
+#spring:
+#  profiles: eureka-jy
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@eureka-B:18080/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@eureka-C:18080/eureka/
+#  instance:
+#    hostname: eureka-A
+#---
+#spring:
+#  profiles: eureka-lhn
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@eureka-A:18080/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@eureka-C:18080/eureka/  
+#  instance:
+#    hostname: eureka-B
+#---
+#spring:
+#  profiles: eureka-zsm
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@eureka-A:18080/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@eureka-B:18080/eureka/
+#  instance:
+#    hostname: eureka-C
 
 
 

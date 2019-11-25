@@ -74,3 +74,56 @@
     update user set host='%' where user = 'root';
     flush privileges;
     exit
+
+
+ 1、使用root用户登录mysql
+
+2、添加具有本地(localhost/127.0.0.1)访问权限的用户
+
+#create user 'newuser'@'localhost' identified by 'password';
+1
+3、创建具有远程访问权限的用户
+
+#create user 'snail'@'%' identified by 'snail';
+
+创建之后记得执行下面指令更新权限：
+
+#flush privileges; 
+
+
+
+3、为新用户分配本地权限，可以指定数据库dbname和表名，可以用*替指所有。
+
+#grant all privileges on `dbname`.* to 'newuser'@'localhost' identified by 'password';  
+
+4、为新用户分配远程权限，可以指定数据库dbname和表名，可以用*替指所有。
+
+MySQL5.x写法：
+
+grant all privileges on `demo`.* to 'sanil'@'localhost' identified by 'snail';
+
+grant all privileges on demo.* to 'snail'@'%' identified by 'sanil';
+MySQL8.x写法：
+grant all privileges on dbname.* to 'newuser'@'%';
+分配好之后之后记得执行下面指令更新权限：
+
+#flush privileges; 
+
+5、如果还有问题，可以使用root账号登陆上去查询一下，再看看有没问题。
+
+#use mysql
+
+#select Host, User, Password from user;
+
+查看权限
+show grants for 'snail'@'localhost';
+
+
+更新mysql.user表
+mysql> use mysql;
+# mysql5.7之前
+mysql> update user set password=password('123456') where user='root';
+# mysql5.7之后
+mysql> update user set authentication_string=password('123456') where user='root';
+mysql> flush privileges;
+
